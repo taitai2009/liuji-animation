@@ -1,286 +1,289 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>合肥六季文化创意有限公司 | 六季动画</title>
-    <meta name="description" content="合肥六季文化创意有限公司 — 专业三维动画制作、影视特效、视觉创意服务商。用创意点亮每一帧。" />
+    <title>六季动画工作室 | 6th Season Animation Studio</title>
+    <meta name="description" content="六季动画工作室：说实话，做实事。15年积淀，主创直连，专注工业机械、建筑工程、高校科研、医疗安全、空间展陈三维动画。CAD/BIM 图纸直出动画，AI 协同提速降价。" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
-        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        :root {
+            --bg: #0a1420;
+            --bg-2: #0d1b2a;
+            --panel: #101f31;
+            --panel-2: #12263b;
+            --line: rgba(125, 211, 252, 0.14);
+            --cyan: #22d3ee;
+            --blue: #38bdf8;
+            --orange: #f59e0b;
+            --text: #e6f1fa;
+            --muted: #8ba3b8;
+            --muted-2: #5f7a90;
+            --radius: 12px;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
             font-family: "Noto Sans SC", sans-serif;
-            background: #0a0a0f;
-            color: #e8e8f0;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             overflow-x: hidden;
-            line-height: 1.6;
         }
+        ::selection { background: rgba(34, 211, 238, 0.35); color: #fff; }
         a { color: inherit; text-decoration: none; }
         img { max-width: 100%; display: block; }
-        ::selection { background: #6c5ce7; color: #fff; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 96px 0; position: relative; }
+        .mono { font-family: "JetBrains Mono", monospace; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        .section { padding: 100px 0; position: relative; }
-        .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 0.5em;
-            letter-spacing: 0.04em;
-        }
-        .section-title::after {
-            content: "";
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
-            margin: 14px auto 0;
-            border-radius: 2px;
-        }
-        .section-sub {
-            text-align: center;
-            color: #8888a0;
-            font-size: 1rem;
-            margin-bottom: 3rem;
-            font-weight: 300;
-        }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0f; }
-        ::-webkit-scrollbar-thumb { background: #6c5ce7; border-radius: 3px; }
-
+        /* ---------- Nav ---------- */
         nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 16px 0;
-            transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+            position: fixed; inset: 0 0 auto 0; z-index: 100;
+            padding: 14px 0;
+            transition: background 0.35s, border-color 0.35s, padding 0.35s;
+            border-bottom: 1px solid transparent;
         }
         nav.scrolled {
-            background: rgba(10,10,15,0.85);
-            backdrop-filter: blur(16px);
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(108,92,231,0.15);
+            background: rgba(10, 20, 32, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom-color: var(--line);
+            padding: 9px 0;
         }
-        .nav-inner {
-            display: flex; align-items: center; justify-content: space-between;
-            max-width: 1200px; margin: 0 auto; padding: 0 24px;
-        }
-        .nav-logo {
-            font-size: 1.3rem; font-weight: 700; letter-spacing: 0.08em;
-            background: linear-gradient(135deg, #a29bfe, #fd79a8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .nav-logo span { font-weight: 300; font-size: 0.75rem; margin-left: 6px; -webkit-text-fill-color: #666680; }
-        .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links a {
-            font-size: 0.85rem; font-weight: 400; color: #aaaac0;
-            transition: color 0.3s; letter-spacing: 0.05em; position: relative;
-        }
-        .nav-links a::after {
-            content: ""; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 2px; background: #6c5ce7; transition: width 0.3s;
-        }
-        .nav-links a:hover { color: #fff; }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-toggle { display: none; background: none; border: none; color: #e8e8f0; font-size: 1.5rem; cursor: pointer; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+        .brand { display: flex; align-items: baseline; gap: 10px; }
+        .brand-cn { font-size: 1.18rem; font-weight: 900; letter-spacing: 0.06em; }
+        .brand-en { font-family: "JetBrains Mono", monospace; font-size: 0.68rem; color: var(--cyan); letter-spacing: 0.18em; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { font-size: 0.86rem; color: var(--muted); transition: color 0.25s; }
+        .nav-links a:hover { color: var(--cyan); }
+        .nav-toggle { display: none; background: none; border: 1px solid var(--line); color: var(--text); font-size: 1.3rem; width: 42px; height: 42px; border-radius: 8px; cursor: pointer; }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
-                background: rgba(15,15,25,0.97); backdrop-filter: blur(20px);
-                flex-direction: column; align-items: center; justify-content: center;
-                gap: 40px; transition: right 0.4s;
-                border-left: 1px solid rgba(108,92,231,0.2);
-            }
-            .nav-links.open { right: 0; }
-            .nav-links a { font-size: 1.1rem; }
-            .nav-toggle { display: block; }
-        }
-
+        /* ---------- Hero ---------- */
         #hero {
-            position: relative; height: 100vh; min-height: 600px;
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center;
+            overflow: hidden;
         }
-        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at center, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.7) 100%);
-            z-index: 1;
+        #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+        .hero-grid-overlay {
+            position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.9), transparent 75%);
         }
-        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 0 24px; }
-        .hero-badge {
-            display: inline-block; padding: 6px 20px;
-            border: 1px solid rgba(108,92,231,0.4); border-radius: 50px;
-            font-size: 0.8rem; color: #a29bfe; letter-spacing: 0.15em;
-            margin-bottom: 24px; backdrop-filter: blur(8px); background: rgba(108,92,231,0.08);
+        .hero-content { position: relative; z-index: 2; padding: 120px 0 80px; }
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 10px;
+            border: 1px solid rgba(34, 211, 238, 0.35);
+            background: rgba(34, 211, 238, 0.08);
+            color: var(--cyan);
+            padding: 7px 16px; border-radius: 999px;
+            font-size: 0.8rem; letter-spacing: 0.14em;
+            margin-bottom: 28px;
         }
+        .hero-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); animation: blink 1.6s infinite; }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
         .hero-title {
-            font-size: clamp(2.4rem, 7vw, 4.8rem); font-weight: 900;
-            letter-spacing: 0.06em; line-height: 1.15; margin-bottom: 0.3em;
+            font-size: clamp(2.5rem, 6.5vw, 4.6rem);
+            font-weight: 900; line-height: 1.16; letter-spacing: 0.04em;
         }
-        .hero-title .gradient {
-            background: linear-gradient(135deg, #a29bfe, #6c5ce7, #fd79a8);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
+        .hero-title .accent { color: var(--cyan); }
+        .hero-title .accent-2 { color: var(--orange); }
         .hero-sub {
-            font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 300;
-            color: #a0a0c0; margin-bottom: 40px; letter-spacing: 0.1em;
+            margin-top: 22px; font-size: clamp(1rem, 2.2vw, 1.28rem);
+            color: var(--muted); font-weight: 300; max-width: 620px;
         }
-        .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .hero-meta {
+            margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px;
+        }
         .btn {
             display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 36px; border-radius: 50px;
-            font-size: 0.95rem; font-weight: 500; letter-spacing: 0.05em;
-            cursor: pointer; transition: all 0.3s; border: none; font-family: inherit;
+            padding: 13px 30px; border-radius: 999px;
+            font-size: 0.95rem; font-weight: 500; border: none; cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff;
-            box-shadow: 0 4px 24px rgba(108,92,231,0.35);
+        .btn-primary { background: var(--cyan); color: #04121c; font-weight: 700; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3); }
+        .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--line); }
+        .btn-outline:hover { border-color: var(--cyan); transform: translateY(-2px); }
+        .hero-contact-strip {
+            margin-top: 54px; display: flex; flex-wrap: wrap; gap: 24px 42px;
+            padding-top: 26px; border-top: 1px solid var(--line);
+            color: var(--muted); font-size: 0.86rem;
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(108,92,231,0.5); }
-        .btn-outline {
-            background: transparent; color: #e8e8f0; border: 1px solid rgba(255,255,255,0.2);
-        }
-        .btn-outline:hover { border-color: #6c5ce7; background: rgba(108,92,231,0.1); transform: translateY(-3px); }
-        .scroll-hint {
-            position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-            z-index: 2; display: flex; flex-direction: column; align-items: center;
-            gap: 8px; color: #666680; font-size: 0.75rem; letter-spacing: 0.1em;
-            animation: float 2s ease-in-out infinite;
-        }
-        .scroll-hint .mouse { width: 24px; height: 36px; border: 2px solid #666680; border-radius: 12px; position: relative; }
-        .scroll-hint .mouse::after {
-            content: ""; position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
-            width: 3px; height: 8px; background: #a29bfe; border-radius: 2px;
-            animation: scrollWheel 1.6s ease-in-out infinite;
-        }
-        @keyframes float { 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(-8px); } }
-        @keyframes scrollWheel { 0%{ opacity:1; transform:translateX(-50%) translateY(0); } 100%{ opacity:0; transform:translateX(-50%) translateY(12px); } }
+        .hero-contact-strip b { color: var(--text); font-weight: 500; }
+        .scroll-hint { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 2; color: var(--muted-2); font-size: 0.72rem; letter-spacing: 0.2em; }
 
-        #about { background: linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 100%); }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about-text h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; color: #fff; }
-        .about-text p { color: #9999b0; margin-bottom: 16px; font-weight: 300; font-size: 1rem; }
-        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .stat-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; padding: 28px 16px; text-align: center;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .stat-card:hover { border-color: rgba(108,92,231,0.3); transform: translateY(-4px); }
-        .stat-number {
-            font-size: 2rem; font-weight: 700;
-            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .stat-label { font-size: 0.8rem; color: #777790; margin-top: 4px; }
+        /* ---------- Stats strip ---------- */
+        .stats-strip { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 38px 0; }
+        .stat { text-align: center; }
+        .stat .num { font-family: "JetBrains Mono", monospace; font-size: 1.9rem; font-weight: 700; color: var(--cyan); }
+        .stat .num small { font-size: 1rem; color: var(--muted); }
+        .stat .label { margin-top: 6px; font-size: 0.82rem; color: var(--muted); }
 
-        #services { background: #0f0f1a; }
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .service-card {
-            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 20px; padding: 40px 28px; transition: all 0.4s; position: relative; overflow: hidden;
+        /* ---------- Section headers ---------- */
+        .sec-head { margin-bottom: 52px; }
+        .sec-eyebrow {
+            font-family: "JetBrains Mono", monospace; font-size: 0.72rem;
+            color: var(--cyan); letter-spacing: 0.22em; margin-bottom: 12px;
         }
-        .service-card::before {
-            content: ""; position: absolute; top: 0; left: 0;
-            width: 100%; height: 3px;
-            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
-            opacity: 0; transition: opacity 0.4s;
-        }
-        .service-card:hover::before { opacity: 1; }
-        .service-card:hover { transform: translateY(-6px); border-color: rgba(108,92,231,0.25); background: rgba(108,92,231,0.04); }
-        .service-icon {
-            width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
-            border-radius: 16px; background: rgba(108,92,231,0.12); margin-bottom: 20px; font-size: 1.5rem;
-        }
-        .service-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; }
-        .service-card p { color: #8888a0; font-size: 0.9rem; font-weight: 300; line-height: 1.7; }
-        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } .about-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; } .stat-card { padding: 20px 10px; } .stat-number { font-size: 1.5rem; } .services-grid { grid-template-columns: 1fr; gap: 16px; } }
-        @media (min-width: 769px) and (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+        .sec-title { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 800; letter-spacing: 0.02em; }
+        .sec-sub { color: var(--muted); margin-top: 14px; max-width: 720px; font-weight: 300; }
 
-        #portfolio { background: #0a0a0f; }
-        .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .portfolio-item {
-            position: relative; border-radius: 16px; overflow: hidden;
-            aspect-ratio: 16/10; background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06); cursor: pointer;
-            transition: all 0.4s; display: flex; align-items: center; justify-content: center;
-        }
-        .portfolio-item:hover { transform: scale(1.02); border-color: rgba(108,92,231,0.3); }
-        .portfolio-placeholder { display: flex; flex-direction: column; align-items: center; gap: 12px; color: #555570; font-size: 0.85rem; text-align: center; padding: 20px; }
-        .portfolio-placeholder .icon { font-size: 2.5rem; opacity: 0.4; }
-        .portfolio-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(108,92,231,0.1) 0%, rgba(10,10,15,0.9) 100%);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.4s; padding: 20px; text-align: center;
-        }
-        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
-        .portfolio-overlay h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
-        .portfolio-overlay p { font-size: 0.8rem; color: #bbb; font-weight: 300; }
-        @media (max-width: 768px) { .portfolio-grid { grid-template-columns: 1fr; } }
-        @media (min-width: 769px) and (max-width: 1024px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+        /* ---------- Cards / panels ---------- */
+        .card { background: linear-gradient(180deg, var(--panel), var(--bg-2)); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; }
+        .card:hover { border-color: rgba(34, 211, 238, 0.35); transform: translateY(-3px); transition: 0.3s; }
+        .card .icon { font-size: 1.6rem; margin-bottom: 14px; }
+        .card h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 10px; }
+        .card p { font-size: 0.9rem; color: var(--muted); font-weight: 300; }
 
-        #contact { background: linear-gradient(180deg, #0f0f1a 0%, #0a0a0f 100%); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .contact-info h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; }
-        .contact-info p { color: #9999b0; font-weight: 300; margin-bottom: 32px; }
-        .contact-item { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-        .contact-item .icon-box { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(108,92,231,0.1); font-size: 1.2rem; flex-shrink: 0; }
-        .contact-item .label { font-size: 0.75rem; color: #777790; }
-        .contact-item .value { font-size: 0.95rem; color: #d0d0e0; font-weight: 400; }
-        .contact-form { display: flex; flex-direction: column; gap: 16px; }
-        .contact-form input, .contact-form textarea {
-            width: 100%; padding: 16px 20px;
-            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px; color: #e8e8f0; font-family: inherit; font-size: 0.9rem;
-            transition: border-color 0.3s; outline: none;
+        /* ---------- About ---------- */
+        .about-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+        .about-copy h3 { font-size: 1.55rem; font-weight: 800; margin-bottom: 18px; }
+        .about-copy p { color: var(--muted); margin-bottom: 16px; font-weight: 300; }
+        .about-copy .hl { color: var(--cyan); font-weight: 500; }
+        .about-points { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+        .about-point { display: flex; gap: 12px; align-items: flex-start; font-size: 0.92rem; color: var(--text); }
+        .about-point .tick { color: var(--cyan); font-weight: 700; flex-shrink: 0; }
+        .pit-grid { display: grid; gap: 20px; }
+        .pit { border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; background: var(--panel); }
+        .pit.red { border-left: 3px solid #f87171; }
+        .pit.orange { border-left: 3px solid var(--orange); }
+        .pit h4 { font-size: 1rem; margin-bottom: 10px; }
+        .pit p { font-size: 0.86rem; color: var(--muted); }
+        .need-box {
+            margin-top: 22px; padding: 22px 24px; border-radius: var(--radius);
+            background: linear-gradient(120deg, rgba(34,211,238,0.12), rgba(245,158,11,0.08));
+            border: 1px solid rgba(34,211,238,0.25);
         }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: #6c5ce7; }
-        .contact-form textarea { min-height: 120px; resize: vertical; }
-        .contact-form input::placeholder, .contact-form textarea::placeholder { color: #555570; }
-        .contact-form .btn { align-self: flex-start; }
-        @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+        .need-box b { color: var(--cyan); }
 
-        footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 32px 0; text-align: center; }
-        footer p { color: #555570; font-size: 0.8rem; font-weight: 300; }
-        footer .brand {
-            background: linear-gradient(135deg, #a29bfe, #fd79a8);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            font-weight: 500;
+        /* ---------- Why ---------- */
+        #why { background: var(--bg-2); }
+        .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .why-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 24px; }
+        .why-card .idx { font-family: "JetBrains Mono", monospace; color: var(--orange); font-size: 0.8rem; letter-spacing: 0.1em; }
+        .why-card h3 { margin: 12px 0 8px; font-size: 1.05rem; }
+        .why-card p { font-size: 0.86rem; color: var(--muted); }
+
+        /* ---------- Services ---------- */
+        .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .svc-card { position: relative; overflow: hidden; }
+        .svc-card .num-bg {
+            position: absolute; right: 14px; top: 8px;
+            font-family: "JetBrains Mono", monospace; font-size: 3.4rem; font-weight: 700;
+            color: rgba(34,211,238,0.07); line-height: 1;
         }
+        .svc-card ul { list-style: none; margin-top: 12px; }
+        .svc-card li { font-size: 0.82rem; color: var(--muted); padding: 3px 0; }
+        .svc-card li::before { content: "—"; color: var(--cyan); margin-right: 8px; }
+        .svc-tag { display: inline-block; font-size: 0.72rem; color: var(--orange); border: 1px solid rgba(245,158,11,0.35); padding: 3px 10px; border-radius: 999px; margin-top: 12px; }
 
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
+        /* ---------- Cost / delivery ---------- */
+        #cost { background: var(--bg-2); }
+        .cost-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
+        .cost-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px; background: var(--panel); display: flex; flex-direction: column; }
+        .cost-card.best { border-color: rgba(34,211,238,0.55); box-shadow: 0 0 0 1px rgba(34,211,238,0.25), 0 20px 50px rgba(34,211,238,0.08); }
+        .cost-card .who { font-size: 0.9rem; color: var(--muted); }
+        .cost-card .pct { font-family: "JetBrains Mono", monospace; font-size: 2.4rem; font-weight: 700; margin: 12px 0 4px; }
+        .cost-card .pct.good { color: var(--cyan); }
+        .cost-card .days { font-size: 0.88rem; color: var(--muted); margin-bottom: 16px; }
+        .cost-card .desc { font-size: 0.84rem; color: var(--muted); }
+        .cost-note { margin-top: 26px; text-align: center; color: var(--muted); font-size: 0.88rem; }
+        .cost-note b { color: var(--cyan); }
 
-        #loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #0a0a0f; display: flex; align-items: center; justify-content: center;
-            z-index: 9999; transition: opacity 0.6s ease;
+        /* ---------- Process ---------- */
+        .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+        .step { position: relative; padding: 24px 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+        .step .s-num { font-family: "JetBrains Mono", monospace; color: var(--orange); font-size: 0.9rem; letter-spacing: 0.12em; }
+        .step h3 { font-size: 1rem; margin: 10px 0 8px; }
+        .step p { font-size: 0.8rem; color: var(--muted); }
+        .step:not(:last-child)::after { content: "→"; position: absolute; right: -16px; top: 50%; transform: translateY(-50%); color: var(--cyan); font-size: 1.2rem; z-index: 2; }
+
+        /* ---------- FAQ ---------- */
+        .faq { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+        .faq-item { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); overflow: hidden; }
+        .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; cursor: pointer; font-weight: 500; font-size: 0.98rem; }
+        .faq-q .arr { color: var(--cyan); transition: transform 0.3s; font-family: "JetBrains Mono", monospace; }
+        .faq-item.open .arr { transform: rotate(45deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 24px; color: var(--muted); font-size: 0.9rem; }
+        .faq-item.open .faq-a { max-height: 320px; padding-bottom: 22px; }
+
+        /* ---------- Contact ---------- */
+        #contact { background: var(--bg-2); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 54px; }
+        .contact-person { display: flex; align-items: center; gap: 16px; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); margin-bottom: 16px; }
+        .avatar { width: 52px; height: 52px; border-radius: 12px; background: linear-gradient(135deg, rgba(34,211,238,0.25), rgba(56,189,248,0.12)); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; border: 1px solid rgba(34,211,238,0.3); }
+        .contact-person .name { font-weight: 700; }
+        .contact-person .role { font-size: 0.8rem; color: var(--muted); }
+        .contact-person .phone { font-family: "JetBrains Mono", monospace; color: var(--cyan); font-size: 0.94rem; margin-top: 4px; }
+        .contact-info-list { display: flex; flex-direction: column; gap: 14px; }
+        .ci { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); font-size: 0.9rem; }
+        .ci .lbl { color: var(--muted-2); font-size: 0.76rem; }
+        .ci .val { color: var(--text); }
+        .contact-cta { margin-top: 26px; padding: 24px; border: 1px dashed rgba(34,211,238,0.4); border-radius: var(--radius); text-align: center; }
+        .contact-cta .big { font-size: 1.15rem; font-weight: 700; color: var(--cyan); margin-bottom: 8px; }
+        .contact-cta p { font-size: 0.86rem; color: var(--muted); }
+
+        /* ---------- Footer ---------- */
+        footer { border-top: 1px solid var(--line); padding: 34px 0; }
+        .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; color: var(--muted-2); font-size: 0.8rem; }
+        .footer-inner .brand-f { color: var(--text); font-weight: 700; }
+
+        /* ---------- Reveal ---------- */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.active { opacity: 1; transform: none; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1000px) {
+            .about-grid { grid-template-columns: 1fr; gap: 36px; }
+            .svc-grid, .cost-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps { grid-template-columns: repeat(3, 1fr); row-gap: 26px; }
+            .step:nth-child(3)::after { display: none; }
+            .contact-grid { grid-template-columns: 1fr; }
         }
-        #loader.hidden { opacity: 0; pointer-events: none; }
-        .loader-ring { width: 48px; height: 48px; border: 3px solid rgba(108,92,231,0.1); border-top-color: #6c5ce7; border-radius: 50%; animation: spin 0.8s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 720px) {
+            .section { padding: 68px 0; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .svc-grid, .cost-grid, .why-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+            .step::after { display: none !important; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 72%; height: 100vh;
+                background: rgba(10,20,32,0.98); flex-direction: column;
+                align-items: center; justify-content: center; gap: 34px;
+                transition: right 0.35s; border-left: 1px solid var(--line);
+            }
+            .nav-links.open { right: 0; }
+            .nav-toggle { display: block; }
+            .hero-contact-strip { gap: 14px; font-size: 0.78rem; }
+        }
     </style>
 </head>
 <body>
-<div id="loader"><div class="loader-ring"></div></div>
 
 <nav id="navbar">
-    <div class="nav-inner">
-        <div class="nav-logo">六季动画 <span>· 合肥</span></div>
+    <div class="container nav-inner">
+        <div class="brand">
+            <span class="brand-cn">六季动画工作室</span>
+            <span class="brand-en">6TH SEASON</span>
+        </div>
         <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="#hero">首页</a></li>
             <li><a href="#about">关于</a></li>
+            <li><a href="#why">优势</a></li>
             <li><a href="#services">服务</a></li>
-            <li><a href="#portfolio">作品</a></li>
+            <li><a href="#cost">交付</a></li>
+            <li><a href="#process">流程</a></li>
+            <li><a href="#faq">问答</a></li>
             <li><a href="#contact">联系</a></li>
         </ul>
     </div>
@@ -288,31 +291,95 @@
 
 <section id="hero">
     <canvas id="hero-canvas"></canvas>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <div class="hero-badge" style="opacity:0;animation:fadeInUp 0.8s 0.3s forwards;">合肥六季文化创意有限公司</div>
-        <h1 class="hero-title" style="opacity:0;animation:fadeInUp 0.8s 0.5s forwards;">用创意 <span class="gradient">点亮</span> 每一帧</h1>
-        <p class="hero-sub" style="opacity:0;animation:fadeInUp 0.8s 0.7s forwards;">专业三维动画 · 影视特效 · 视觉创意 — 让想象跃然屏上</p>
-        <div class="hero-actions" style="opacity:0;animation:fadeInUp 0.8s 0.9s forwards;">
-            <a href="#portfolio" class="btn btn-primary">探索作品 →</a>
-            <a href="#contact" class="btn btn-outline">联系我们</a>
+    <div class="hero-grid-overlay"></div>
+    <div class="container hero-content">
+        <div class="hero-tag"><span class="dot"></span> 6TH SEASON ANIMATION STUDIO</div>
+        <h1 class="hero-title">
+            说实话，<span class="accent">做实事</span><br />
+            您的<span class="accent-2">动画外援</span>
+        </h1>
+        <p class="hero-sub">专治各种技术"说不清"。我们是靠谱的动画"手艺人"——15年积淀，主创直连，从 CAD/BIM 图纸直出三维动画，让复杂的工程原理一眼看懂。</p>
+        <div class="hero-meta">
+            <a href="#services" class="btn btn-primary">看我们能做什么</a>
+            <a href="#contact" class="btn btn-outline">直接联系主创</a>
+        </div>
+        <div class="hero-contact-strip">
+            <span>主创直连：<b>汪工（对接）</b> &amp; <b>张工（技术）</b></span>
+            <span>微信手机同号：<b>13865995916 / 13865996267</b></span>
+            <span>官网：<b>WWW.6THSEASON.COM</b></span>
         </div>
     </div>
-    <div class="scroll-hint"><div class="mouse"></div><span>向下滚动</span></div>
+    <div class="scroll-hint mono">SCROLL ▼</div>
+</section>
+
+<section class="stats-strip">
+    <div class="container stats-grid">
+        <div class="stat reveal"><div class="num">15<small>年+</small></div><div class="label">行业积淀</div></div>
+        <div class="stat reveal"><div class="num">1<small>对1</small></div><div class="label">主创直连对接</div></div>
+        <div class="stat reveal"><div class="num">55<small>%</small></div><div class="label">AI协同模式成本</div></div>
+        <div class="stat reveal"><div class="num">6<small>天</small></div><div class="label">极限响应交付</div></div>
+    </div>
 </section>
 
 <section id="about" class="section">
     <div class="container">
         <div class="about-grid">
-            <div class="about-text reveal">
-                <span class="hero-badge" style="margin-bottom:16px;">关于我们</span>
-                <h3>用三维语言讲述品牌故事</h3>
-                <p>合肥六季文化创意有限公司，是一家专注于三维动画制作与视觉创意设计的专业机构。<br/><br/>我们汇聚了来自影视、游戏、广告等领域的资深动画师与设计师，以"六季"为名，寓意创意如四季流转般生生不息，在每一帧画面中注入匠心与温度。<br/><br/>从产品动画到建筑漫游，从角色绑定到影视特效，我们为客户提供全流程的三维视觉解决方案，让每一个项目都成为打动人心的视觉作品。</p>
+            <div class="about-copy reveal">
+                <div class="sec-eyebrow">// 先给您交个底</div>
+                <h3>我们是个人工作室，不是大厂</h3>
+                <p>六季是由主创 + 偶尔合作的固定技术小伙伴组成的手艺人团队。我们不租豪华写字楼，不养业务员，把省下的每一分钱都花在画面上。</p>
+                <p>我们从原生 <span class="hl">CAD/BIM 图纸直出动画</span>，听得懂技术术语，看得到传动细节，从源头消灭沟通误差。</p>
+                <p>太大、需要几百人干半年的活我们接不了；但 80% 的常规商业动画需求，我们做得更精细、更对位。</p>
+                <div class="about-points">
+                    <div class="about-point"><span class="tick">✓</span> 价格实在：没中间商抽成，直接面对真正干活的人</div>
+                    <div class="about-point"><span class="tick">✓</span> 机动灵活：随时随地改稿，微信电话直接沟通</div>
+                    <div class="about-point"><span class="tick">✓</span> 省心内核：省去客户经理、项目经理、制片层层传话</div>
+                    <div class="about-point"><span class="tick">✓</span> 极限响应：深夜紧急汇报也能随时顶得上</div>
+                </div>
             </div>
-            <div class="about-stats reveal reveal-delay-1">
-                <div class="stat-card"><div class="stat-number">100+</div><div class="stat-label">合作项目</div></div>
-                <div class="stat-card"><div class="stat-number">50+</div><div class="stat-label">服务客户</div></div>
-                <div class="stat-card"><div class="stat-number">6+</div><div class="stat-label">年行业经验</div></div>
+            <div class="pit-grid reveal reveal-delay-1">
+                <div class="pit red">
+                    <h4>坑 1：找大厂，价格贵、流程死</h4>
+                    <p>报价动辄几万十几万，一大半在给行政、房租和销售提成买单。沟通像传声筒，销售听不懂硬核技术，改个意见要层层排单审批。</p>
+                </div>
+                <div class="pit orange">
+                    <h4>坑 2：找便宜外包，技术糙、易失联</h4>
+                    <p>低价散兵看不懂机械图纸和工法原理，核心动画错漏百出。改两次就不耐烦，甚至断联跑路，让您在重要汇报前开天窗。</p>
+                </div>
+                <div class="need-box">
+                    <p><b>您的真实需求：</b>技术过关 + 沟通顺畅 + 价格实在 + 按时交活。六季工作室，就是为此而生的。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="why" class="section">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-eyebrow">// 为何选择六季</div>
+            <h2 class="sec-title">降本、增效、主创直连</h2>
+        </div>
+        <div class="why-grid">
+            <div class="why-card reveal">
+                <div class="idx">01 / DIRECT</div>
+                <h3>主创直连</h3>
+                <p>跳过"传话筒"式销售。坐在您对面沟通的，就是直接敲键盘调模型的人，极大降低沟通成本。</p>
+            </div>
+            <div class="why-card reveal reveal-delay-1">
+                <div class="idx">02 / RESPONSE</div>
+                <h3>极限响应</h3>
+                <p>没有大公司的官僚流程，直接微信弹语音。紧急标案随叫随到，给您 100% 的交付安全感。</p>
+            </div>
+            <div class="why-card reveal reveal-delay-2">
+                <div class="idx">03 / PRICE</div>
+                <h3>价格明牌</h3>
+                <p>按项目实打实报价：建模、动画、渲染清单清清楚楚。绝不后期坐地起价，加急费提前说。</p>
+            </div>
+            <div class="why-card reveal reveal-delay-3">
+                <div class="idx">04 / AI</div>
+                <h3>AI 协同</h3>
+                <p>AI 负责打杂提速，主创负责专业死磕。砍掉 30% 冤枉钱，交付提速 40%，出活比人快，价格比人低。</p>
             </div>
         </div>
     </div>
@@ -320,71 +387,156 @@
 
 <section id="services" class="section">
     <div class="container">
-        <h2 class="section-title reveal">核心服务</h2>
-        <p class="section-sub reveal reveal-delay-1">从创意到成片，一站式三维视觉服务</p>
-        <div class="services-grid">
-            <div class="service-card reveal reveal-delay-1">
-                <div class="service-icon">🎬</div>
-                <h3>三维动画制作</h3>
-                <p>产品动画、角色动画、机械动画、广告短片 — 精细建模与流畅动画结合，让产品与故事活起来。</p>
+        <div class="sec-head reveal">
+            <div class="sec-eyebrow">// 我们能为您做什么</div>
+            <h2 class="sec-title">五大服务方向</h2>
+            <p class="sec-sub">从工业机械到医疗安全，从建筑工程到高校科研，用最理性的建模逻辑还原最复杂的工程原理。</p>
+        </div>
+        <div class="svc-grid">
+            <div class="card svc-card reveal">
+                <div class="num-bg">01</div>
+                <div class="icon">⚙️</div>
+                <h3>工业机械</h3>
+                <p>原理显性化，让内部卖点一目了然。</p>
+                <ul>
+                    <li>机械传动动画</li>
+                    <li>流程展示 / 原理拆解透视</li>
+                    <li>多语种 AI 说明书片子</li>
+                </ul>
+                <span class="svc-tag">设备发布 · 展会演示 · 技术招商</span>
             </div>
-            <div class="service-card reveal reveal-delay-2">
-                <div class="service-icon">🏗️</div>
-                <h3>建筑可视化</h3>
-                <p>建筑漫游动画、室内外效果图、景观可视化，用逼真的光影与材质呈现未建成空间的真实质感。</p>
+            <div class="card svc-card reveal reveal-delay-1">
+                <div class="num-bg">02</div>
+                <div class="icon">🏗️</div>
+                <h3>建筑工程</h3>
+                <p>给工程图纸赋予"动态时间轴"。</p>
+                <ul>
+                    <li>工艺施工模拟 / BIM 汇报表现</li>
+                    <li>高危工法技术交底演示动画</li>
+                    <li>建筑漫游 / 园区空间推演</li>
+                </ul>
+                <span class="svc-tag">规避施工冲突 · 提高投标胜算</span>
             </div>
-            <div class="service-card reveal reveal-delay-3">
-                <div class="service-icon">✨</div>
-                <h3>影视特效 / VFX</h3>
-                <p>粒子特效、流体模拟、烟火爆炸、后期合成 — 为影视与广告注入惊艳的视觉效果。</p>
+            <div class="card svc-card reveal reveal-delay-2">
+                <div class="num-bg">03</div>
+                <div class="icon">🔬</div>
+                <h3>高校科研</h3>
+                <p>斩断学术壁垒，把数据与公式转化为视觉语言。</p>
+                <ul>
+                    <li>论文成果原理解析</li>
+                    <li>前沿课题可视化申报视频</li>
+                    <li>纳米 / 生物微观漫游</li>
+                </ul>
+                <span class="svc-tag">路演融资 · 国家级项目申报</span>
             </div>
-            <div class="service-card reveal reveal-delay-1">
-                <div class="service-icon">🧩</div>
-                <h3>角色设计与绑定</h3>
-                <p>从概念设计到角色建模、骨骼绑定、面部Rig，为游戏、动画与虚拟偶像提供完整的角色资产。</p>
+            <div class="card svc-card reveal">
+                <div class="num-bg">04</div>
+                <div class="icon">🩺</div>
+                <h3>医疗安全</h3>
+                <p>理性解构微观世界，用画面建立敬畏。</p>
+                <ul>
+                    <li>药理机制（MOA）动画</li>
+                    <li>医疗器械操作演示</li>
+                    <li>事故复现 / SOP 作业演示</li>
+                </ul>
+                <span class="svc-tag">药企路演 · 安全培训 · 医患沟通</span>
             </div>
-            <div class="service-card reveal reveal-delay-2">
-                <div class="service-icon">🎨</div>
-                <h3>视觉创意设计</h3>
-                <p>品牌视觉识别、动态图形设计、海报与宣传物料 — 以独特的美学视角赋能品牌表达。</p>
+            <div class="card svc-card reveal reveal-delay-1">
+                <div class="num-bg">05</div>
+                <div class="icon">🏛️</div>
+                <h3>空间展陈</h3>
+                <p>打破物理边界，把静态空间做成动态资产。</p>
+                <ul>
+                    <li>数字展厅 / 云展厅三维漫游</li>
+                    <li>虚拟直播间场景制作</li>
+                    <li>大屏多媒体交互内容</li>
+                </ul>
+                <span class="svc-tag">一份预算 · 多倍商业价值</span>
             </div>
-            <div class="service-card reveal reveal-delay-3">
-                <div class="service-icon">📹</div>
-                <h3>视频后期制作</h3>
-                <p>剪辑、调色、音效设计、字幕包装 — 全流程后期服务，为成片赋予专业级质感。</p>
+            <div class="card svc-card reveal reveal-delay-2" style="background: linear-gradient(135deg, rgba(34,211,238,0.1), var(--panel));">
+                <div class="num-bg">+</div>
+                <div class="icon">🤝</div>
+                <h3>按需定制</h3>
+                <p>没有列出的需求？直接发图纸来聊。只要技术原理讲得清，我们都能做。</p>
+                <ul>
+                    <li>源文件全量移交</li>
+                    <li>数字资产二次复用</li>
+                    <li>长期主义，不做一锤子买卖</li>
+                </ul>
+                <span class="svc-tag">15年口碑运营 · 结款移交源文件</span>
             </div>
         </div>
     </div>
 </section>
 
-<section id="portfolio" class="section">
+<section id="cost" class="section">
     <div class="container">
-        <h2 class="section-title reveal">代表作品</h2>
-        <p class="section-sub reveal reveal-delay-1">部分合作项目展示（持续更新中）</p>
-        <div class="portfolio-grid">
-            <div class="portfolio-item reveal reveal-delay-1">
-                <img src="work-product.jpg" alt="科技品牌产品动画" style="width:100%;height:100%;object-fit:cover;" />
-                <div class="portfolio-overlay"><h4>科技品牌产品动画</h4><p>3C产品三维宣传片</p></div>
+        <div class="sec-head reveal">
+            <div class="sec-eyebrow">// 交付优势</div>
+            <h2 class="sec-title">同样品质，更低的成本与更快的周期</h2>
+        </div>
+        <div class="cost-grid">
+            <div class="cost-card reveal">
+                <div class="who">大型动画大厂流程</div>
+                <div class="pct">100%</div>
+                <div class="days mono">成本 · 14天正常周期</div>
+                <div class="desc">标准商业动画外包模式，流程完整但沟通层级多，成本与时间成本都更高。</div>
             </div>
-            <div class="portfolio-item reveal reveal-delay-2">
-                <img src="work-arch.jpg" alt="商业综合体建筑漫游" style="width:100%;height:100%;object-fit:cover;" />
-                <div class="portfolio-overlay"><h4>商业综合体建筑漫游</h4><p>建筑可视化动画</p></div>
+            <div class="cost-card best reveal reveal-delay-1">
+                <div class="who">六季主创直连</div>
+                <div class="pct good">75%</div>
+                <div class="days mono">成本 · 9天紧凑周期</div>
+                <div class="desc">主创全程直连，省去中间环节，按项目明牌报价，交付更快更对位。</div>
             </div>
-            <div class="portfolio-item reveal reveal-delay-3">
-                <img src="work-char.jpg" alt="虚拟IP角色动画" style="width:100%;height:100%;object-fit:cover;" />
-                <div class="portfolio-overlay"><h4>虚拟IP角色动画</h4><p>角色设计与绑定动画</p></div>
+            <div class="cost-card reveal reveal-delay-2">
+                <div class="who">六季 AI 协同模式</div>
+                <div class="pct good">55%</div>
+                <div class="days mono">成本 · 6天极限响应交付</div>
+                <div class="desc">AI 负责提速打杂，主创死磕专业精度，交付周期缩短 40%，成本直降 30%。</div>
             </div>
-            <div class="portfolio-item reveal reveal-delay-1">
-                <img src="work-vfx.jpg" alt="企业宣传片特效" style="width:100%;height:100%;object-fit:cover;" />
-                <div class="portfolio-overlay"><h4>企业宣传片特效</h4><p>粒子特效与合成</p></div>
+        </div>
+        <p class="cost-note reveal">核心宗旨：<b>AI 负责打杂提速，主创负责专业死磕。</b>出活比人快，价格比人低。</p>
+    </div>
+</section>
+
+<section id="process" class="section">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-eyebrow">// 合作流程</div>
+            <h2 class="sec-title">极简五步，不绕弯子</h2>
+        </div>
+        <div class="steps">
+            <div class="step reveal"><div class="s-num">01</div><h3>发图纸</h3><p>CAD / BIM 或草图直接发来，随时在线理思路。</p></div>
+            <div class="step reveal reveal-delay-1"><div class="s-num">02</div><h3>24h 明牌报价</h3><p>建模、动画、渲染清单清清楚楚，不玩套路。</p></div>
+            <div class="step reveal reveal-delay-2"><div class="s-num">03</div><h3>出草图</h3><p>AI 快速确认分镜，动工前先看大致雏形。</p></div>
+            <div class="step reveal reveal-delay-3"><div class="s-num">04</div><h3>提意见</h3><p>微信直连随时改，拒绝盲盒沟通。</p></div>
+            <div class="step reveal reveal-delay-4"><div class="s-num">05</div><h3>交全量</h3><p>结款移交全部源文件，资产完全属于您。</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="faq" class="section" style="background: var(--bg-2);">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-eyebrow">// 直接回答</div>
+            <h2 class="sec-title">您可能还担心的几个问题</h2>
+        </div>
+        <div class="faq">
+            <div class="faq-item reveal">
+                <div class="faq-q">Q：质量能和那些大品牌公司比吗？<span class="arr">+</span></div>
+                <div class="faq-a">比好莱坞特效肯定比不过；但把技术原理讲明白、让评审专家挑不出刺这方面，我们绝对不输。动工前会给您确认白模，觉得不行您可以随时停。</div>
             </div>
-            <div class="portfolio-item reveal reveal-delay-2">
-                <img src="work-motion.jpg" alt="品牌动态视觉设计" style="width:100%;height:100%;object-fit:cover;" />
-                <div class="portfolio-overlay"><h4>品牌动态视觉设计</h4><p>MG动画与品牌视频</p></div>
+            <div class="faq-item reveal reveal-delay-1">
+                <div class="faq-q">Q：个人工作室，中间会不会突然跑路？<span class="arr">+</span></div>
+                <div class="faq-a">我和我的固定搭档在这个行业做了 15 年，靠的就是熟人介绍和老客户复购吃饭。跑路等于砸自己饭碗，成本太高，大可放心。</div>
             </div>
-            <div class="portfolio-item reveal reveal-delay-3">
-                <img src="work-game.jpg" alt="次世代游戏场景" style="width:100%;height:100%;object-fit:cover;" />
-                <div class="portfolio-overlay"><h4>次世代游戏场景</h4><p>3A级游戏模型资产</p></div>
+            <div class="faq-item reveal reveal-delay-2">
+                <div class="faq-q">Q：合作流程是怎样的？会不会很繁琐？<span class="arr">+</span></div>
+                <div class="faq-a">极简 5 步：发模型图纸 → 24h 内明牌报价 → 出脚本和动态白模预演（确认大方向）→ 阶段修改最终成片 → 结尾款，源文件全给。</div>
+            </div>
+            <div class="faq-item reveal reveal-delay-3">
+                <div class="faq-q">Q：发票和正式合同能走正常的公账吗？<span class="arr">+</span></div>
+                <div class="faq-a">可以。我们有正规登记的个体工商户执照，走标准公账。不管是增值税普票还是专票，都能按时开具，不给您的财务添任何麻烦。</div>
             </div>
         </div>
     </div>
@@ -392,174 +544,174 @@
 
 <section id="contact" class="section">
     <div class="container">
-        <h2 class="section-title reveal">联系我们</h2>
-        <p class="section-sub reveal reveal-delay-1">让创意从这里开始 — 期待与您的合作</p>
+        <div class="sec-head reveal">
+            <div class="sec-eyebrow">// 联系主创</div>
+            <h2 class="sec-title">主创手艺人直连工作台</h2>
+            <p class="sec-sub">没那么多规矩，只想帮您把事办了。随时发图纸，当场在线理思路、出排期。</p>
+        </div>
         <div class="contact-grid">
-            <div class="contact-info reveal">
-                <h3>合肥六季文化创意有限公司</h3>
-                <p>无论您有三维动画、视觉设计还是影视制作的需求，欢迎随时与我们取得联系。</p>
-                <div class="contact-item"><div class="icon-box">📍</div><div><div class="label">地址</div><div class="value">安徽省合肥市（联系获取详细地址）</div></div></div>
-                <div class="contact-item"><div class="icon-box">📱</div><div><div class="label">电话 / 微信</div><div class="value">联系获取联系方式</div></div></div>
-                <div class="contact-item"><div class="icon-box">✉️</div><div><div class="label">邮箱</div><div class="value">contact@6ji-animation.com</div></div></div>
+            <div class="reveal">
+                <div class="contact-person">
+                    <div class="avatar">汪</div>
+                    <div>
+                        <div class="name">汪工 · 商务与工程对接</div>
+                        <div class="role">微信手机同号，随时发图纸理需求</div>
+                        <div class="phone">138 6599 5916</div>
+                    </div>
+                </div>
+                <div class="contact-person">
+                    <div class="avatar">张</div>
+                    <div>
+                        <div class="name">张工 · 资深 3D 核心制作</div>
+                        <div class="role">直接敲键盘调模型的人</div>
+                        <div class="phone">138 6599 6267</div>
+                    </div>
+                </div>
             </div>
-            <form class="contact-form reveal reveal-delay-1" onsubmit="event.preventDefault();alert('感谢您的留言！我们会尽快与您联系。')">
-                <input type="text" placeholder="您的姓名" required />
-                <input type="email" placeholder="邮箱地址" required />
-                <input type="text" placeholder="联系电话" />
-                <textarea placeholder="请描述您的需求..." required></textarea>
-                <button type="submit" class="btn btn-primary">发送消息 ✦</button>
-            </form>
+            <div class="reveal reveal-delay-1">
+                <div class="contact-info-list">
+                    <div class="ci"><div><div class="lbl">官方邮箱</div><div class="val">contact@6thseason.com</div></div></div>
+                    <div class="ci"><div><div class="lbl">官方网站</div><div class="val">WWW.6THSEASON.COM</div></div></div>
+                    <div class="ci"><div><div class="lbl">工作台地址</div><div class="val">安徽省合肥市蜀山区金大地公馆商务中心</div></div></div>
+                </div>
+                <div class="contact-cta">
+                    <div class="big">随时发图纸，当场理思路</div>
+                    <p>微信 / 电话直连主创，24h 内明牌报价，拒绝传话筒。</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <footer>
-    <div class="container">
-        <p>© 2024-2026 <span class="brand">合肥六季文化创意有限公司</span> &nbsp;|&nbsp; 用创意点亮每一帧</p>
+    <div class="container footer-inner">
+        <div><span class="brand-f">六季动画工作室</span> · 6TH SEASON ANIMATION STUDIO</div>
+        <div>实事求是 · 落地务实 · © 2026</div>
     </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-(function() {
-    var canvas = document.getElementById("hero-canvas");
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    var particlesGeo = new THREE.BufferGeometry();
-    var count = 3000;
-    var positions = new Float32Array(count * 3);
-    var colors = new Float32Array(count * 3);
-
-    for (var i = 0; i < count; i++) {
-        positions[i*3] = (Math.random() - 0.5) * 30;
-        positions[i*3+1] = (Math.random() - 0.5) * 20;
-        positions[i*3+2] = (Math.random() - 0.5) * 20 - 8;
-        var c = new THREE.Color();
-        c.setHSL(0.72 + Math.random() * 0.12, 0.7, 0.4 + Math.random() * 0.3);
-        colors[i*3] = c.r;
-        colors[i*3+1] = c.g;
-        colors[i*3+2] = c.b;
-    }
-    particlesGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    particlesGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-
-    var particlesMat = new THREE.PointsMaterial({
-        size: 0.08, vertexColors: true, transparent: true,
-        opacity: 0.8, blending: THREE.AdditiveBlending, sizeAttenuation: true
-    });
-    var particles = new THREE.Points(particlesGeo, particlesMat);
-    scene.add(particles);
-
-    var shapes = [];
-    var shapeCount = 40;
-    var shapeGeo = new THREE.IcosahedronGeometry(0.12, 0);
-    for (var i = 0; i < shapeCount; i++) {
-        var shapeMat = new THREE.MeshBasicMaterial({ color: 0x6c5ce7, wireframe: true, transparent: true, opacity: 0.3 });
-        var mesh = new THREE.Mesh(shapeGeo, shapeMat);
-        var angle = (i / shapeCount) * Math.PI * 2;
-        var radius = 4 + Math.random() * 3;
-        var height = (Math.random() - 0.5) * 6;
-        mesh.position.set(Math.cos(angle) * radius, height, Math.sin(angle) * radius);
-        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
-        mesh.userData = { angle: angle, radius: radius };
-        scene.add(mesh);
-        shapes.push(mesh);
-    }
-
-    var glowGeo = new THREE.SphereGeometry(0.5, 16, 16);
-    var glowMat = new THREE.MeshBasicMaterial({ color: 0x6c5ce7, transparent: true, opacity: 0.15 });
-    var glow = new THREE.Mesh(glowGeo, glowMat);
-    scene.add(glow);
-
-    var gpCount = 200;
-    var gpPos = new Float32Array(gpCount * 3);
-    for (var i = 0; i < gpCount; i++) {
-        var a = (i / gpCount) * Math.PI * 2;
-        var r = 1.2 + Math.random() * 0.3;
-        gpPos[i*3] = Math.cos(a) * r;
-        gpPos[i*3+1] = (Math.random() - 0.5) * 0.2;
-        gpPos[i*3+2] = Math.sin(a) * r;
-    }
-    var glowParticlesGeo = new THREE.BufferGeometry();
-    glowParticlesGeo.setAttribute("position", new THREE.BufferAttribute(gpPos, 3));
-    var gpMat = new THREE.PointsMaterial({
-        size: 0.04, color: 0xa29bfe, transparent: true,
-        opacity: 0.6, blending: THREE.AdditiveBlending, sizeAttenuation: true
-    });
-    var glowRing = new THREE.Points(glowParticlesGeo, gpMat);
-    scene.add(glowRing);
-
-    camera.position.z = 6;
-    camera.position.y = 0.5;
-
-    var mouseX = 0, mouseY = 0;
-    document.addEventListener("mousemove", function(e) {
-        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
-    });
-
-    var time = 0;
-    function animate() {
-        requestAnimationFrame(animate);
-        time += 0.003;
-        particles.rotation.y += 0.0008;
-        particles.rotation.x = Math.sin(time * 0.1) * 0.05;
-        for (var i = 0; i < shapes.length; i++) {
-            var mesh = shapes[i];
-            mesh.rotation.x += 0.005;
-            mesh.rotation.y += 0.01;
-            mesh.position.x = Math.cos(time * 0.3 + mesh.userData.angle) * mesh.userData.radius;
-            mesh.position.z = Math.sin(time * 0.3 + mesh.userData.angle) * mesh.userData.radius;
-        }
-        var pulse = 0.8 + Math.sin(time * 2) * 0.2;
-        glow.scale.set(pulse, pulse, pulse);
-        glowRing.rotation.y += 0.005;
-        var targetX = mouseX * 0.4;
-        var targetY = mouseY * 0.3;
-        camera.position.x += (targetX - camera.position.x) * 0.03;
-        camera.position.y += (-targetY - camera.position.y) * 0.03;
-        camera.lookAt(0, 0, 0);
-        renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener("resize", function() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+    // ===== Three.js hero: mechanical blueprint scene =====
+    (function () {
+        var canvas = document.getElementById('hero-canvas');
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 200);
+        var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // particle field
+        var count = 1600;
+        var pos = new Float32Array(count * 3);
+        for (var i = 0; i < count; i++) {
+            pos[i * 3] = (Math.random() - 0.5) * 46;
+            pos[i * 3 + 1] = (Math.random() - 0.5) * 26;
+            pos[i * 3 + 2] = (Math.random() - 0.5) * 22 - 10;
+        }
+        var pGeo = new THREE.BufferGeometry();
+        pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        var pMat = new THREE.PointsMaterial({
+            color: 0x38bdf8, size: 0.07, transparent: true, opacity: 0.55,
+            blending: THREE.AdditiveBlending, sizeAttenuation: true
+        });
+        var particles = new THREE.Points(pGeo, pMat);
+        scene.add(particles);
+
+        // gear-like wireframe shapes
+        var shapes = [];
+        var geos = [
+            new THREE.TorusGeometry(0.9, 0.16, 8, 24),
+            new THREE.IcosahedronGeometry(0.7, 0),
+            new THREE.CylinderGeometry(0.55, 0.55, 1.1, 6),
+            new THREE.OctahedronGeometry(0.65, 0)
+        ];
+        for (var i = 0; i < 9; i++) {
+            var mat = new THREE.MeshBasicMaterial({
+                color: i % 3 === 0 ? 0x22d3ee : (i % 3 === 1 ? 0x38bdf8 : 0x0e7490),
+                wireframe: true, transparent: true, opacity: 0.32
+            });
+            var mesh = new THREE.Mesh(geos[i % geos.length], mat);
+            mesh.position.set((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 11, -6 - Math.random() * 8);
+            mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+            mesh.userData.speed = 0.004 + Math.random() * 0.01;
+            scene.add(mesh);
+            shapes.push(mesh);
+        }
+
+        // center axis rings
+        var ringMat = new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: 0.16 });
+        var ring1 = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.04, 8, 48), ringMat);
+        var ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.4, 0.03, 8, 64), ringMat);
+        scene.add(ring1); scene.add(ring2);
+
+        camera.position.z = 9;
+        camera.position.y = 0.4;
+
+        var mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', function (e) {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+        });
+
+        var t = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            t += 0.0025;
+            particles.rotation.y += 0.0006;
+            particles.rotation.x = Math.sin(t * 0.12) * 0.04;
+
+            for (var i = 0; i < shapes.length; i++) {
+                shapes[i].rotation.x += shapes[i].userData.speed;
+                shapes[i].rotation.y += shapes[i].userData.speed * 1.4;
+                shapes[i].position.y += Math.sin(t * 1.2 + i) * 0.002;
+            }
+            ring1.rotation.z += 0.004;
+            ring2.rotation.z -= 0.003;
+            ring2.rotation.x = Math.sin(t) * 0.25;
+
+            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.03;
+            camera.position.y += (-mouseY * 0.35 - camera.position.y) * 0.03;
+            camera.lookAt(0, 0, -2);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', function () {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    })();
+
+    // ===== nav scroll =====
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
-})();
 
-var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-        if (entry.isIntersecting) entry.target.classList.add("active");
+    // ===== mobile nav =====
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    toggle.addEventListener('click', function () { links.classList.toggle('open'); });
+    links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () { links.classList.remove('open'); });
     });
-}, { threshold: 0.15 });
-document.querySelectorAll(".reveal").forEach(function(el) { observer.observe(el); });
 
-var navbar = document.getElementById("navbar");
-window.addEventListener("scroll", function() {
-    navbar.classList.toggle("scrolled", window.scrollY > 60);
-});
+    // ===== reveal =====
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
 
-var toggle = document.getElementById("navToggle");
-var links = document.getElementById("navLinks");
-toggle.addEventListener("click", function() { links.classList.toggle("open"); });
-links.querySelectorAll("a").forEach(function(a) {
-    a.addEventListener("click", function() { links.classList.remove("open"); });
-});
-
-window.addEventListener("load", function() {
-    setTimeout(function() { document.getElementById("loader").classList.add("hidden"); }, 400);
-});
-
-var s = document.createElement("style");
-s.textContent = "@keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }";
-document.head.appendChild(s);
+    // ===== FAQ accordion =====
+    document.querySelectorAll('.faq-q').forEach(function (q) {
+        q.addEventListener('click', function () {
+            q.parentElement.classList.toggle('open');
+        });
+    });
 </script>
 </body>
 </html>
