@@ -1,0 +1,565 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>合肥六季文化创意有限公司 | 六季动画</title>
+    <meta name="description" content="合肥六季文化创意有限公司 — 专业三维动画制作、影视特效、视觉创意服务商。用创意点亮每一帧。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "Noto Sans SC", sans-serif;
+            background: #0a0a0f;
+            color: #e8e8f0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        ::selection { background: #6c5ce7; color: #fff; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 100px 0; position: relative; }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5em;
+            letter-spacing: 0.04em;
+        }
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+            margin: 14px auto 0;
+            border-radius: 2px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #8888a0;
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #6c5ce7; border-radius: 3px; }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 16px 0;
+            transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+        }
+        nav.scrolled {
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(16px);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(108,92,231,0.15);
+        }
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        }
+        .nav-logo {
+            font-size: 1.3rem; font-weight: 700; letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #a29bfe, #fd79a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-logo span { font-weight: 300; font-size: 0.75rem; margin-left: 6px; -webkit-text-fill-color: #666680; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            font-size: 0.85rem; font-weight: 400; color: #aaaac0;
+            transition: color 0.3s; letter-spacing: 0.05em; position: relative;
+        }
+        .nav-links a::after {
+            content: ""; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: #6c5ce7; transition: width 0.3s;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-toggle { display: none; background: none; border: none; color: #e8e8f0; font-size: 1.5rem; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
+                background: rgba(15,15,25,0.97); backdrop-filter: blur(20px);
+                flex-direction: column; align-items: center; justify-content: center;
+                gap: 40px; transition: right 0.4s;
+                border-left: 1px solid rgba(108,92,231,0.2);
+            }
+            .nav-links.open { right: 0; }
+            .nav-links a { font-size: 1.1rem; }
+            .nav-toggle { display: block; }
+        }
+
+        #hero {
+            position: relative; height: 100vh; min-height: 600px;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.7) 100%);
+            z-index: 1;
+        }
+        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 0 24px; }
+        .hero-badge {
+            display: inline-block; padding: 6px 20px;
+            border: 1px solid rgba(108,92,231,0.4); border-radius: 50px;
+            font-size: 0.8rem; color: #a29bfe; letter-spacing: 0.15em;
+            margin-bottom: 24px; backdrop-filter: blur(8px); background: rgba(108,92,231,0.08);
+        }
+        .hero-title {
+            font-size: clamp(2.4rem, 7vw, 4.8rem); font-weight: 900;
+            letter-spacing: 0.06em; line-height: 1.15; margin-bottom: 0.3em;
+        }
+        .hero-title .gradient {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7, #fd79a8);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-sub {
+            font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 300;
+            color: #a0a0c0; margin-bottom: 40px; letter-spacing: 0.1em;
+        }
+        .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 36px; border-radius: 50px;
+            font-size: 0.95rem; font-weight: 500; letter-spacing: 0.05em;
+            cursor: pointer; transition: all 0.3s; border: none; font-family: inherit;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff;
+            box-shadow: 0 4px 24px rgba(108,92,231,0.35);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(108,92,231,0.5); }
+        .btn-outline {
+            background: transparent; color: #e8e8f0; border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-outline:hover { border-color: #6c5ce7; background: rgba(108,92,231,0.1); transform: translateY(-3px); }
+        .scroll-hint {
+            position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+            z-index: 2; display: flex; flex-direction: column; align-items: center;
+            gap: 8px; color: #666680; font-size: 0.75rem; letter-spacing: 0.1em;
+            animation: float 2s ease-in-out infinite;
+        }
+        .scroll-hint .mouse { width: 24px; height: 36px; border: 2px solid #666680; border-radius: 12px; position: relative; }
+        .scroll-hint .mouse::after {
+            content: ""; position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+            width: 3px; height: 8px; background: #a29bfe; border-radius: 2px;
+            animation: scrollWheel 1.6s ease-in-out infinite;
+        }
+        @keyframes float { 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(-8px); } }
+        @keyframes scrollWheel { 0%{ opacity:1; transform:translateX(-50%) translateY(0); } 100%{ opacity:0; transform:translateX(-50%) translateY(12px); } }
+
+        #about { background: linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 100%); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; color: #fff; }
+        .about-text p { color: #9999b0; margin-bottom: 16px; font-weight: 300; font-size: 1rem; }
+        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .stat-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 28px 16px; text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .stat-card:hover { border-color: rgba(108,92,231,0.3); transform: translateY(-4px); }
+        .stat-number {
+            font-size: 2rem; font-weight: 700;
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-label { font-size: 0.8rem; color: #777790; margin-top: 4px; }
+
+        #services { background: #0f0f1a; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .service-card {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px; padding: 40px 28px; transition: all 0.4s; position: relative; overflow: hidden;
+        }
+        .service-card::before {
+            content: ""; position: absolute; top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .service-card:hover::before { opacity: 1; }
+        .service-card:hover { transform: translateY(-6px); border-color: rgba(108,92,231,0.25); background: rgba(108,92,231,0.04); }
+        .service-icon {
+            width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
+            border-radius: 16px; background: rgba(108,92,231,0.12); margin-bottom: 20px; font-size: 1.5rem;
+        }
+        .service-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; }
+        .service-card p { color: #8888a0; font-size: 0.9rem; font-weight: 300; line-height: 1.7; }
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } .about-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; } .stat-card { padding: 20px 10px; } .stat-number { font-size: 1.5rem; } .services-grid { grid-template-columns: 1fr; gap: 16px; } }
+        @media (min-width: 769px) and (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        #portfolio { background: #0a0a0f; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .portfolio-item {
+            position: relative; border-radius: 16px; overflow: hidden;
+            aspect-ratio: 16/10; background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06); cursor: pointer;
+            transition: all 0.4s; display: flex; align-items: center; justify-content: center;
+        }
+        .portfolio-item:hover { transform: scale(1.02); border-color: rgba(108,92,231,0.3); }
+        .portfolio-placeholder { display: flex; flex-direction: column; align-items: center; gap: 12px; color: #555570; font-size: 0.85rem; text-align: center; padding: 20px; }
+        .portfolio-placeholder .icon { font-size: 2.5rem; opacity: 0.4; }
+        .portfolio-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(108,92,231,0.1) 0%, rgba(10,10,15,0.9) 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.4s; padding: 20px; text-align: center;
+        }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-overlay h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
+        .portfolio-overlay p { font-size: 0.8rem; color: #bbb; font-weight: 300; }
+        @media (max-width: 768px) { .portfolio-grid { grid-template-columns: 1fr; } }
+        @media (min-width: 769px) and (max-width: 1024px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        #contact { background: linear-gradient(180deg, #0f0f1a 0%, #0a0a0f 100%); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-info h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; }
+        .contact-info p { color: #9999b0; font-weight: 300; margin-bottom: 32px; }
+        .contact-item { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .contact-item .icon-box { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(108,92,231,0.1); font-size: 1.2rem; flex-shrink: 0; }
+        .contact-item .label { font-size: 0.75rem; color: #777790; }
+        .contact-item .value { font-size: 0.95rem; color: #d0d0e0; font-weight: 400; }
+        .contact-form { display: flex; flex-direction: column; gap: 16px; }
+        .contact-form input, .contact-form textarea {
+            width: 100%; padding: 16px 20px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px; color: #e8e8f0; font-family: inherit; font-size: 0.9rem;
+            transition: border-color 0.3s; outline: none;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: #6c5ce7; }
+        .contact-form textarea { min-height: 120px; resize: vertical; }
+        .contact-form input::placeholder, .contact-form textarea::placeholder { color: #555570; }
+        .contact-form .btn { align-self: flex-start; }
+        @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+        footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 32px 0; text-align: center; }
+        footer p { color: #555570; font-size: 0.8rem; font-weight: 300; }
+        footer .brand {
+            background: linear-gradient(135deg, #a29bfe, #fd79a8);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            font-weight: 500;
+        }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #0a0a0f; display: flex; align-items: center; justify-content: center;
+            z-index: 9999; transition: opacity 0.6s ease;
+        }
+        #loader.hidden { opacity: 0; pointer-events: none; }
+        .loader-ring { width: 48px; height: 48px; border: 3px solid rgba(108,92,231,0.1); border-top-color: #6c5ce7; border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+<div id="loader"><div class="loader-ring"></div></div>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <div class="nav-logo">六季动画 <span>· 合肥</span></div>
+        <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero">首页</a></li>
+            <li><a href="#about">关于</a></li>
+            <li><a href="#services">服务</a></li>
+            <li><a href="#portfolio">作品</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge" style="opacity:0;animation:fadeInUp 0.8s 0.3s forwards;">合肥六季文化创意有限公司</div>
+        <h1 class="hero-title" style="opacity:0;animation:fadeInUp 0.8s 0.5s forwards;">用创意 <span class="gradient">点亮</span> 每一帧</h1>
+        <p class="hero-sub" style="opacity:0;animation:fadeInUp 0.8s 0.7s forwards;">专业三维动画 · 影视特效 · 视觉创意 — 让想象跃然屏上</p>
+        <div class="hero-actions" style="opacity:0;animation:fadeInUp 0.8s 0.9s forwards;">
+            <a href="#portfolio" class="btn btn-primary">探索作品 →</a>
+            <a href="#contact" class="btn btn-outline">联系我们</a>
+        </div>
+    </div>
+    <div class="scroll-hint"><div class="mouse"></div><span>向下滚动</span></div>
+</section>
+
+<section id="about" class="section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <span class="hero-badge" style="margin-bottom:16px;">关于我们</span>
+                <h3>用三维语言讲述品牌故事</h3>
+                <p>合肥六季文化创意有限公司，是一家专注于三维动画制作与视觉创意设计的专业机构。<br/><br/>我们汇聚了来自影视、游戏、广告等领域的资深动画师与设计师，以"六季"为名，寓意创意如四季流转般生生不息，在每一帧画面中注入匠心与温度。<br/><br/>从产品动画到建筑漫游，从角色绑定到影视特效，我们为客户提供全流程的三维视觉解决方案，让每一个项目都成为打动人心的视觉作品。</p>
+            </div>
+            <div class="about-stats reveal reveal-delay-1">
+                <div class="stat-card"><div class="stat-number">100+</div><div class="stat-label">合作项目</div></div>
+                <div class="stat-card"><div class="stat-number">50+</div><div class="stat-label">服务客户</div></div>
+                <div class="stat-card"><div class="stat-number">6+</div><div class="stat-label">年行业经验</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="section">
+    <div class="container">
+        <h2 class="section-title reveal">核心服务</h2>
+        <p class="section-sub reveal reveal-delay-1">从创意到成片，一站式三维视觉服务</p>
+        <div class="services-grid">
+            <div class="service-card reveal reveal-delay-1">
+                <div class="service-icon">🎬</div>
+                <h3>三维动画制作</h3>
+                <p>产品动画、角色动画、机械动画、广告短片 — 精细建模与流畅动画结合，让产品与故事活起来。</p>
+            </div>
+            <div class="service-card reveal reveal-delay-2">
+                <div class="service-icon">🏗️</div>
+                <h3>建筑可视化</h3>
+                <p>建筑漫游动画、室内外效果图、景观可视化，用逼真的光影与材质呈现未建成空间的真实质感。</p>
+            </div>
+            <div class="service-card reveal reveal-delay-3">
+                <div class="service-icon">✨</div>
+                <h3>影视特效 / VFX</h3>
+                <p>粒子特效、流体模拟、烟火爆炸、后期合成 — 为影视与广告注入惊艳的视觉效果。</p>
+            </div>
+            <div class="service-card reveal reveal-delay-1">
+                <div class="service-icon">🧩</div>
+                <h3>角色设计与绑定</h3>
+                <p>从概念设计到角色建模、骨骼绑定、面部Rig，为游戏、动画与虚拟偶像提供完整的角色资产。</p>
+            </div>
+            <div class="service-card reveal reveal-delay-2">
+                <div class="service-icon">🎨</div>
+                <h3>视觉创意设计</h3>
+                <p>品牌视觉识别、动态图形设计、海报与宣传物料 — 以独特的美学视角赋能品牌表达。</p>
+            </div>
+            <div class="service-card reveal reveal-delay-3">
+                <div class="service-icon">📹</div>
+                <h3>视频后期制作</h3>
+                <p>剪辑、调色、音效设计、字幕包装 — 全流程后期服务，为成片赋予专业级质感。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="portfolio" class="section">
+    <div class="container">
+        <h2 class="section-title reveal">代表作品</h2>
+        <p class="section-sub reveal reveal-delay-1">部分合作项目展示（持续更新中）</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item reveal reveal-delay-1">
+                <img src="work-product.jpg" alt="科技品牌产品动画" style="width:100%;height:100%;object-fit:cover;" />
+                <div class="portfolio-overlay"><h4>科技品牌产品动画</h4><p>3C产品三维宣传片</p></div>
+            </div>
+            <div class="portfolio-item reveal reveal-delay-2">
+                <img src="work-arch.jpg" alt="商业综合体建筑漫游" style="width:100%;height:100%;object-fit:cover;" />
+                <div class="portfolio-overlay"><h4>商业综合体建筑漫游</h4><p>建筑可视化动画</p></div>
+            </div>
+            <div class="portfolio-item reveal reveal-delay-3">
+                <img src="work-char.jpg" alt="虚拟IP角色动画" style="width:100%;height:100%;object-fit:cover;" />
+                <div class="portfolio-overlay"><h4>虚拟IP角色动画</h4><p>角色设计与绑定动画</p></div>
+            </div>
+            <div class="portfolio-item reveal reveal-delay-1">
+                <img src="work-vfx.jpg" alt="企业宣传片特效" style="width:100%;height:100%;object-fit:cover;" />
+                <div class="portfolio-overlay"><h4>企业宣传片特效</h4><p>粒子特效与合成</p></div>
+            </div>
+            <div class="portfolio-item reveal reveal-delay-2">
+                <img src="work-motion.jpg" alt="品牌动态视觉设计" style="width:100%;height:100%;object-fit:cover;" />
+                <div class="portfolio-overlay"><h4>品牌动态视觉设计</h4><p>MG动画与品牌视频</p></div>
+            </div>
+            <div class="portfolio-item reveal reveal-delay-3">
+                <img src="work-game.jpg" alt="次世代游戏场景" style="width:100%;height:100%;object-fit:cover;" />
+                <div class="portfolio-overlay"><h4>次世代游戏场景</h4><p>3A级游戏模型资产</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section">
+    <div class="container">
+        <h2 class="section-title reveal">联系我们</h2>
+        <p class="section-sub reveal reveal-delay-1">让创意从这里开始 — 期待与您的合作</p>
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <h3>合肥六季文化创意有限公司</h3>
+                <p>无论您有三维动画、视觉设计还是影视制作的需求，欢迎随时与我们取得联系。</p>
+                <div class="contact-item"><div class="icon-box">📍</div><div><div class="label">地址</div><div class="value">安徽省合肥市（联系获取详细地址）</div></div></div>
+                <div class="contact-item"><div class="icon-box">📱</div><div><div class="label">电话 / 微信</div><div class="value">联系获取联系方式</div></div></div>
+                <div class="contact-item"><div class="icon-box">✉️</div><div><div class="label">邮箱</div><div class="value">contact@6ji-animation.com</div></div></div>
+            </div>
+            <form class="contact-form reveal reveal-delay-1" onsubmit="event.preventDefault();alert('感谢您的留言！我们会尽快与您联系。')">
+                <input type="text" placeholder="您的姓名" required />
+                <input type="email" placeholder="邮箱地址" required />
+                <input type="text" placeholder="联系电话" />
+                <textarea placeholder="请描述您的需求..." required></textarea>
+                <button type="submit" class="btn btn-primary">发送消息 ✦</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2024-2026 <span class="brand">合肥六季文化创意有限公司</span> &nbsp;|&nbsp; 用创意点亮每一帧</p>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function() {
+    var canvas = document.getElementById("hero-canvas");
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    var particlesGeo = new THREE.BufferGeometry();
+    var count = 3000;
+    var positions = new Float32Array(count * 3);
+    var colors = new Float32Array(count * 3);
+
+    for (var i = 0; i < count; i++) {
+        positions[i*3] = (Math.random() - 0.5) * 30;
+        positions[i*3+1] = (Math.random() - 0.5) * 20;
+        positions[i*3+2] = (Math.random() - 0.5) * 20 - 8;
+        var c = new THREE.Color();
+        c.setHSL(0.72 + Math.random() * 0.12, 0.7, 0.4 + Math.random() * 0.3);
+        colors[i*3] = c.r;
+        colors[i*3+1] = c.g;
+        colors[i*3+2] = c.b;
+    }
+    particlesGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    particlesGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+
+    var particlesMat = new THREE.PointsMaterial({
+        size: 0.08, vertexColors: true, transparent: true,
+        opacity: 0.8, blending: THREE.AdditiveBlending, sizeAttenuation: true
+    });
+    var particles = new THREE.Points(particlesGeo, particlesMat);
+    scene.add(particles);
+
+    var shapes = [];
+    var shapeCount = 40;
+    var shapeGeo = new THREE.IcosahedronGeometry(0.12, 0);
+    for (var i = 0; i < shapeCount; i++) {
+        var shapeMat = new THREE.MeshBasicMaterial({ color: 0x6c5ce7, wireframe: true, transparent: true, opacity: 0.3 });
+        var mesh = new THREE.Mesh(shapeGeo, shapeMat);
+        var angle = (i / shapeCount) * Math.PI * 2;
+        var radius = 4 + Math.random() * 3;
+        var height = (Math.random() - 0.5) * 6;
+        mesh.position.set(Math.cos(angle) * radius, height, Math.sin(angle) * radius);
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+        mesh.userData = { angle: angle, radius: radius };
+        scene.add(mesh);
+        shapes.push(mesh);
+    }
+
+    var glowGeo = new THREE.SphereGeometry(0.5, 16, 16);
+    var glowMat = new THREE.MeshBasicMaterial({ color: 0x6c5ce7, transparent: true, opacity: 0.15 });
+    var glow = new THREE.Mesh(glowGeo, glowMat);
+    scene.add(glow);
+
+    var gpCount = 200;
+    var gpPos = new Float32Array(gpCount * 3);
+    for (var i = 0; i < gpCount; i++) {
+        var a = (i / gpCount) * Math.PI * 2;
+        var r = 1.2 + Math.random() * 0.3;
+        gpPos[i*3] = Math.cos(a) * r;
+        gpPos[i*3+1] = (Math.random() - 0.5) * 0.2;
+        gpPos[i*3+2] = Math.sin(a) * r;
+    }
+    var glowParticlesGeo = new THREE.BufferGeometry();
+    glowParticlesGeo.setAttribute("position", new THREE.BufferAttribute(gpPos, 3));
+    var gpMat = new THREE.PointsMaterial({
+        size: 0.04, color: 0xa29bfe, transparent: true,
+        opacity: 0.6, blending: THREE.AdditiveBlending, sizeAttenuation: true
+    });
+    var glowRing = new THREE.Points(glowParticlesGeo, gpMat);
+    scene.add(glowRing);
+
+    camera.position.z = 6;
+    camera.position.y = 0.5;
+
+    var mouseX = 0, mouseY = 0;
+    document.addEventListener("mousemove", function(e) {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    });
+
+    var time = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.003;
+        particles.rotation.y += 0.0008;
+        particles.rotation.x = Math.sin(time * 0.1) * 0.05;
+        for (var i = 0; i < shapes.length; i++) {
+            var mesh = shapes[i];
+            mesh.rotation.x += 0.005;
+            mesh.rotation.y += 0.01;
+            mesh.position.x = Math.cos(time * 0.3 + mesh.userData.angle) * mesh.userData.radius;
+            mesh.position.z = Math.sin(time * 0.3 + mesh.userData.angle) * mesh.userData.radius;
+        }
+        var pulse = 0.8 + Math.sin(time * 2) * 0.2;
+        glow.scale.set(pulse, pulse, pulse);
+        glowRing.rotation.y += 0.005;
+        var targetX = mouseX * 0.4;
+        var targetY = mouseY * 0.3;
+        camera.position.x += (targetX - camera.position.x) * 0.03;
+        camera.position.y += (-targetY - camera.position.y) * 0.03;
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener("resize", function() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+})();
+
+var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add("active");
+    });
+}, { threshold: 0.15 });
+document.querySelectorAll(".reveal").forEach(function(el) { observer.observe(el); });
+
+var navbar = document.getElementById("navbar");
+window.addEventListener("scroll", function() {
+    navbar.classList.toggle("scrolled", window.scrollY > 60);
+});
+
+var toggle = document.getElementById("navToggle");
+var links = document.getElementById("navLinks");
+toggle.addEventListener("click", function() { links.classList.toggle("open"); });
+links.querySelectorAll("a").forEach(function(a) {
+    a.addEventListener("click", function() { links.classList.remove("open"); });
+});
+
+window.addEventListener("load", function() {
+    setTimeout(function() { document.getElementById("loader").classList.add("hidden"); }, 400);
+});
+
+var s = document.createElement("style");
+s.textContent = "@keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }";
+document.head.appendChild(s);
+</script>
+</body>
+</html>

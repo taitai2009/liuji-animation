@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
@@ -9,18 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
-        :root {
-            --bg: #0a1420;
-            --bg-2: #0d1b2a;
-            --panel: #101f31;
-            --panel-2: #12263b;
-            --line: rgba(125, 211, 252, 0.14);
-            --cyan: #22d3ee;
-            --blue: #38bdf8;
-            --orange: #f59e0b;
-            --text: #e6f1fa;
-            --muted: #8ba3b8;
-            --muted-2: #5f7a90;
+                :root {
+            --bg: #0a0a0f;
+            --bg-2: #0d0d16;
+            --panel: #141420;
+            --panel-2: #171726;
+            --line: rgba(108, 92, 231, 0.2);
+            --cyan: #a29bfe;
+            --blue: #6c5ce7;
+            --orange: #fd79a8;
+            --pink: #fd79a8;
+            --text: #e8e8f0;
+            --muted: #a0a0c0;
+            --muted-2: #6f6f8a;
             --radius: 12px;
         }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,7 +33,7 @@
             line-height: 1.7;
             overflow-x: hidden;
         }
-        ::selection { background: rgba(34, 211, 238, 0.35); color: #fff; }
+        ::selection { background: rgba(108, 92, 231, 0.35); color: #fff; }
         a { color: inherit; text-decoration: none; }
         img { max-width: 100%; display: block; }
         .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
@@ -68,7 +69,7 @@
             overflow: hidden;
         }
         #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
-        .hero-grid-overlay {
+        .hero-grid-overlay { z-index: 1;
             position: absolute; inset: 0; z-index: 1; pointer-events: none;
             background-image:
                 linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
@@ -79,7 +80,7 @@
         .hero-content { position: relative; z-index: 2; padding: 120px 0 80px; }
         .hero-tag {
             display: inline-flex; align-items: center; gap: 10px;
-            border: 1px solid rgba(34, 211, 238, 0.35);
+            border: 1px solid rgba(108, 92, 231, 0.35);
             background: rgba(34, 211, 238, 0.08);
             color: var(--cyan);
             padding: 7px 16px; border-radius: 999px;
@@ -138,7 +139,7 @@
 
         /* ---------- Cards / panels ---------- */
         .card { background: linear-gradient(180deg, var(--panel), var(--bg-2)); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; }
-        .card:hover { border-color: rgba(34, 211, 238, 0.35); transform: translateY(-3px); transition: 0.3s; }
+        .card:hover { border-color: rgba(108, 92, 231, 0.35); transform: translateY(-3px); transition: 0.3s; }
         .card .icon { font-size: 1.6rem; margin-bottom: 14px; }
         .card h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 10px; }
         .card p { font-size: 0.9rem; color: var(--muted); font-weight: 300; }
@@ -241,6 +242,37 @@
         .reveal.active { opacity: 1; transform: none; }
 
         /* ---------- Responsive ---------- */
+
+        /* ---------- Works ---------- */
+        .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .work-card {
+            border: 1px solid var(--line);
+            background: var(--panel);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform .25s, border-color .25s;
+            aspect-ratio: 4 / 3;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .work-card:hover { transform: translateY(-4px); border-color: rgba(34, 211, 238, 0.45); }
+        .work-empty {
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 10px; padding: 18px; text-align: center;
+            color: var(--muted);
+        }
+        .work-empty .slot-num {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.78rem; letter-spacing: 0.16em; color: var(--cyan);
+        }
+        .work-empty strong { font-size: 1rem; color: var(--text); font-weight: 600; }
+        .work-empty small { font-size: 0.8rem; color: var(--muted-2); line-height: 1.6; }
+        .work-media, .work-media video, .work-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        @media (max-width: 1000px) { .works-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 720px) { .works-grid { grid-template-columns: 1fr; } }
         @media (max-width: 1000px) {
             .about-grid { grid-template-columns: 1fr; gap: 36px; }
             .svc-grid, .cost-grid { grid-template-columns: repeat(2, 1fr); }
@@ -281,6 +313,7 @@
             <li><a href="#about">关于</a></li>
             <li><a href="#why">优势</a></li>
             <li><a href="#services">服务</a></li>
+            <li><a href="#works">作品</a></li>
             <li><a href="#cost">交付</a></li>
             <li><a href="#process">流程</a></li>
             <li><a href="#faq">问答</a></li>
@@ -469,6 +502,61 @@
     </div>
 </section>
 
+
+<section id="works" class="section" style="background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);">
+    <div class="container">
+        <div class="sec-head reveal">
+            <div class="sec-eyebrow">// 作品展示</div>
+            <h2 class="sec-title">近期动画作品</h2>
+            <p class="sec-sub">这里预留了图片 / 视频替换位。您把自己的文件放到相同目录后，修改下方 src 即可。</p>
+        </div>
+        <div class="works-grid">
+            <div class="work-card reveal">
+                <div class="work-empty">
+                    <div class="slot-num">SLOT-01</div>
+                    <strong>作品图或视频放这里</strong>
+                    <small>推荐替换下方 &lt;img&gt; 的 src：work-01.jpg 或 work-01.mp4</small>
+                </div>
+            </div>
+            <div class="work-card reveal reveal-delay-1">
+                <div class="work-empty">
+                    <div class="slot-num">SLOT-02</div>
+                    <strong>作品图或视频放这里</strong>
+                    <small>推荐替换下方 &lt;img&gt; 的 src：work-02.jpg 或 work-02.mp4</small>
+                </div>
+            </div>
+            <div class="work-card reveal reveal-delay-2">
+                <div class="work-empty">
+                    <div class="slot-num">SLOT-03</div>
+                    <strong>作品图或视频放这里</strong>
+                    <small>推荐替换下方 &lt;img&gt; 的 src：work-03.jpg 或 work-03.mp4</small>
+                </div>
+            </div>
+            <div class="work-card reveal reveal-delay-1">
+                <div class="work-empty">
+                    <div class="slot-num">SLOT-04</div>
+                    <strong>作品图或视频放这里</strong>
+                    <small>推荐替换 src：work-04.jpg 或 work-04.mp4</small>
+                </div>
+            </div>
+            <div class="work-card reveal reveal-delay-2">
+                <div class="work-empty">
+                    <div class="slot-num">SLOT-05</div>
+                    <strong>作品图或视频放这里</strong>
+                    <small>推荐替换 src：work-05.jpg 或 work-05.mp4</small>
+                </div>
+            </div>
+            <div class="work-card reveal reveal-delay-0">
+                <div class="work-empty">
+                    <div class="slot-num">SLOT-06</div>
+                    <strong>作品图或视频放这里</strong>
+                    <small>推荐替换 src：work-06.jpg 或 work-06.mp4</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="cost" class="section">
     <div class="container">
         <div class="sec-head reveal">
@@ -592,97 +680,117 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-    // ===== Three.js hero: mechanical blueprint scene =====
-    (function () {
-        var canvas = document.getElementById('hero-canvas');
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 200);
-        var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+(function () {
+    var canvas = document.getElementById("hero-canvas");
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    var particlesGeo = new THREE.BufferGeometry();
+    var count = 3000;
+    var positions = new Float32Array(count * 3);
+    var colors = new Float32Array(count * 3);
+    for (var i = 0; i < count; i++) {
+        positions[i*3] = (Math.random() - 0.5) * 30;
+        positions[i*3+1] = (Math.random() - 0.5) * 20;
+        positions[i*3+2] = (Math.random() - 0.5) * 20 - 8;
+        var c = new THREE.Color();
+        c.setHSL(0.72 + Math.random() * 0.12, 0.7, 0.4 + Math.random() * 0.3);
+        colors[i*3] = c.r;
+        colors[i*3+1] = c.g;
+        colors[i*3+2] = c.b;
+    }
+    particlesGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    particlesGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+
+    var particlesMat = new THREE.PointsMaterial({
+        size: 0.08, vertexColors: true, transparent: true,
+        opacity: 0.8, blending: THREE.AdditiveBlending, sizeAttenuation: true
+    });
+    var particles = new THREE.Points(particlesGeo, particlesMat);
+    scene.add(particles);
+
+    var shapes = [];
+    var shapeCount = 40;
+    var shapeGeo = new THREE.IcosahedronGeometry(0.12, 0);
+    for (var i = 0; i < shapeCount; i++) {
+        var shapeMat = new THREE.MeshBasicMaterial({ color: 0x6c5ce7, wireframe: true, transparent: true, opacity: 0.3 });
+        var mesh = new THREE.Mesh(shapeGeo, shapeMat);
+        var angle = (i / shapeCount) * Math.PI * 2;
+        var radius = 4 + Math.random() * 3;
+        var height = (Math.random() - 0.5) * 6;
+        mesh.position.set(Math.cos(angle) * radius, height, Math.sin(angle) * radius);
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+        mesh.userData = { angle: angle, radius: radius };
+        scene.add(mesh);
+        shapes.push(mesh);
+    }
+
+    var glowGeo = new THREE.SphereGeometry(0.5, 16, 16);
+    var glowMat = new THREE.MeshBasicMaterial({ color: 0x6c5ce7, transparent: true, opacity: 0.15 });
+    var glow = new THREE.Mesh(glowGeo, glowMat);
+    scene.add(glow);
+
+    var gpCount = 200;
+    var gpPos = new Float32Array(gpCount * 3);
+    for (var i = 0; i < gpCount; i++) {
+        var a = (i / gpCount) * Math.PI * 2;
+        var r = 1.2 + Math.random() * 0.3;
+        gpPos[i*3] = Math.cos(a) * r;
+        gpPos[i*3+1] = (Math.random() - 0.5) * 0.2;
+        gpPos[i*3+2] = Math.sin(a) * r;
+    }
+    var glowParticlesGeo = new THREE.BufferGeometry();
+    glowParticlesGeo.setAttribute("position", new THREE.BufferAttribute(gpPos, 3));
+    var gpMat = new THREE.PointsMaterial({
+        size: 0.04, color: 0xa29bfe, transparent: true,
+        opacity: 0.6, blending: THREE.AdditiveBlending, sizeAttenuation: true
+    });
+    var glowRing = new THREE.Points(glowParticlesGeo, gpMat);
+    scene.add(glowRing);
+
+    camera.position.z = 6;
+    camera.position.y = 0.5;
+
+    var mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', function(e) {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    });
+
+    var time = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.003;
+        particles.rotation.y += 0.0008;
+        particles.rotation.x = Math.sin(time * 0.1) * 0.05;
+        for (var i = 0; i < shapes.length; i++) {
+            var mesh = shapes[i];
+            mesh.rotation.x += 0.005;
+            mesh.rotation.y += 0.01;
+            mesh.position.x = Math.cos(time * 0.3 + mesh.userData.angle) * mesh.userData.radius;
+            mesh.position.z = Math.sin(time * 0.3 + mesh.userData.angle) * mesh.userData.radius;
+        }
+        var pulse = 0.8 + Math.sin(time * 2) * 0.2;
+        glow.scale.set(pulse, pulse, pulse);
+        glowRing.rotation.y += 0.005;
+        var targetX = mouseX * 0.4;
+        var targetY = mouseY * 0.3;
+        camera.position.x += (targetX - camera.position.x) * 0.03;
+        camera.position.y += (-targetY - camera.position.y) * 0.03;
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', function() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        // particle field
-        var count = 1600;
-        var pos = new Float32Array(count * 3);
-        for (var i = 0; i < count; i++) {
-            pos[i * 3] = (Math.random() - 0.5) * 46;
-            pos[i * 3 + 1] = (Math.random() - 0.5) * 26;
-            pos[i * 3 + 2] = (Math.random() - 0.5) * 22 - 10;
-        }
-        var pGeo = new THREE.BufferGeometry();
-        pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-        var pMat = new THREE.PointsMaterial({
-            color: 0x38bdf8, size: 0.07, transparent: true, opacity: 0.55,
-            blending: THREE.AdditiveBlending, sizeAttenuation: true
-        });
-        var particles = new THREE.Points(pGeo, pMat);
-        scene.add(particles);
-
-        // gear-like wireframe shapes
-        var shapes = [];
-        var geos = [
-            new THREE.TorusGeometry(0.9, 0.16, 8, 24),
-            new THREE.IcosahedronGeometry(0.7, 0),
-            new THREE.CylinderGeometry(0.55, 0.55, 1.1, 6),
-            new THREE.OctahedronGeometry(0.65, 0)
-        ];
-        for (var i = 0; i < 9; i++) {
-            var mat = new THREE.MeshBasicMaterial({
-                color: i % 3 === 0 ? 0x22d3ee : (i % 3 === 1 ? 0x38bdf8 : 0x0e7490),
-                wireframe: true, transparent: true, opacity: 0.32
-            });
-            var mesh = new THREE.Mesh(geos[i % geos.length], mat);
-            mesh.position.set((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 11, -6 - Math.random() * 8);
-            mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
-            mesh.userData.speed = 0.004 + Math.random() * 0.01;
-            scene.add(mesh);
-            shapes.push(mesh);
-        }
-
-        // center axis rings
-        var ringMat = new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: 0.16 });
-        var ring1 = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.04, 8, 48), ringMat);
-        var ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.4, 0.03, 8, 64), ringMat);
-        scene.add(ring1); scene.add(ring2);
-
-        camera.position.z = 9;
-        camera.position.y = 0.4;
-
-        var mouseX = 0, mouseY = 0;
-        document.addEventListener('mousemove', function (e) {
-            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-            mouseY = (e.clientY / window.innerHeight) * 2 - 1;
-        });
-
-        var t = 0;
-        function animate() {
-            requestAnimationFrame(animate);
-            t += 0.0025;
-            particles.rotation.y += 0.0006;
-            particles.rotation.x = Math.sin(t * 0.12) * 0.04;
-
-            for (var i = 0; i < shapes.length; i++) {
-                shapes[i].rotation.x += shapes[i].userData.speed;
-                shapes[i].rotation.y += shapes[i].userData.speed * 1.4;
-                shapes[i].position.y += Math.sin(t * 1.2 + i) * 0.002;
-            }
-            ring1.rotation.z += 0.004;
-            ring2.rotation.z -= 0.003;
-            ring2.rotation.x = Math.sin(t) * 0.25;
-
-            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.03;
-            camera.position.y += (-mouseY * 0.35 - camera.position.y) * 0.03;
-            camera.lookAt(0, 0, -2);
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', function () {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    })();
+    });
+})();
 
     // ===== nav scroll =====
     var navbar = document.getElementById('navbar');
@@ -715,3 +823,6 @@
 </script>
 </body>
 </html>
+
+
+
